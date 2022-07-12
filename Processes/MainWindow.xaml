@@ -1,0 +1,38 @@
+﻿<Window x:Class="Processes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Processes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"  
+        d:DataContext="{d:DesignInstance local:MainViewModel}">
+    <Window.Resources>
+        <ContextMenu x:Key="cmButton">
+            <MenuItem Command="{Binding}" Header="Menu item 1" />
+            <MenuItem Header="Menu item 2" />
+            <Separator />
+            <MenuItem Header="Menu item 3" />
+        </ContextMenu>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="1"  Margin="10">
+            <DockPanel Grid.Row="1" Margin="10">
+                <DataGrid x:Name="ProductsList" ItemsSource="{Binding Processes, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" AutoGenerateColumns="False" MouseRightButtonUp="Process_MouseRightButtonUp" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Procces Name" Binding="{Binding ProcessName}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+
+    </Grid>
+    
+</Window>
